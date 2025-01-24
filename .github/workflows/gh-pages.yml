@@ -7,6 +7,9 @@ on: # Define the events that will trigger the pipeline
 
 jobs: # Define the jobs that will be executed
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # Define the URL of the deployed web app
     runs-on: ubuntu-latest
 
     steps:
@@ -18,3 +21,4 @@ jobs: # Define the jobs that will be executed
         with:
           github_token: ${{ secrets.WEB_GITHUB_TOKEN }}
           publish_dir: ./github-action-web # Directory to deploy
+          publish_branch: gh-pages # Branch to deploy to
