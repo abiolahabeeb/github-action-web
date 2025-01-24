@@ -1,0 +1,20 @@
+name: CI/CD Pipeline
+
+on: # Define the events that will trigger the pipeline
+  push:
+    branches:
+      - main # Trigger deployment on pushes to the main branch
+
+jobs: # Define the jobs that will be executed
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to GitHub Pages # Deploy the web app to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3 # Use the peaceiris/actions-gh-pages action
+        with:
+          github_token: ${{ secrets.WEB_GITHUB_TOKEN }}
+          publish_dir: ./github-action-web # Directory to deploy
