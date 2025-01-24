@@ -5,6 +5,11 @@ on: # Define the events that will trigger the pipeline
     branches:
       - main # Trigger deployment on pushes to the main branch
 
+permissions: #
+  contents: read
+  pages: write
+  id-token: write
+
 jobs: # Define the jobs that will be executed
   deploy:
     environment:
@@ -21,4 +26,3 @@ jobs: # Define the jobs that will be executed
         with:
           github_token: ${{ secrets.WEB_GITHUB_TOKEN }}
           publish_dir: ./github-action-web # Directory to deploy
-          publish_branch: gh-pages # Branch to deploy to
